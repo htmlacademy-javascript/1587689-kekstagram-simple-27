@@ -1,33 +1,31 @@
 function getNumber(min, max) {
-  let randomizeNumber
 
-  randomizeNumber = Math.floor(Math.random() * (max - min + 1) + min)
+  let randomizeNumber = Math.floor(Math.random() * (max - min + 1) + min)
 
   if (min < 0 || max < 0) {
-    randomizeNumber = NaN
+    return -1;
   }
 
   if (min > max) {
-    min === max && max === min
+    min = max;
+    max = min;
   }
 
   if (min === max) {
-    randomizeNumber = 'Ты сам знаешь какое это число'
+    return -1;
   }
 
-  return randomizeNumber
-};
+  return randomizeNumber;
+}
 
-const NUMBER = getNumber(0, 20);
+const MIN = 5;
+const MAX = 20;
+const number = getNumber(MIN, MAX);
 
-console.log(NUMBER);
+console.log(number);
 
 function getComment (string, maxLength) {
-  if (string < maxLength) {
-    return true
-  }
-
-  return false
-};
+  return string <= maxLength;
+}
 
 console.log(getComment (1200, 140));
