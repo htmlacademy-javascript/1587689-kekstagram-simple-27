@@ -33,17 +33,29 @@ const photosDescriptionsArray = [
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-const photosIdArray = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'];
+let idCount = 25;
+
+const photosIdArray = []
+
+const createId = (idCount) => {
+  for (i = 0; i <= idCount; i++) {
+    photosIdArray.push(i)
+  }
+
+  return photosIdArray;
+}
+
+createId(idCount);
 
 const createPhoto = () => ({
   id:  id = photosIdArray[i],
-  url: 'photos/' + id + '.jpg',
+  url: `photos/${id}.jpg`,
   description: getRandomArrayElement(photosDescriptionsArray),
   likes: getRandomInteger(15, 200),
   comments: getRandomInteger(0, 200)
 })
 
-let photosArray = []
+const photosArray = []
 
 for (i = 0; i <= photosIdArray.length - 1; i++) {
   photosArray.push(createPhoto());
