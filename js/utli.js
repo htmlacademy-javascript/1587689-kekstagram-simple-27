@@ -18,9 +18,7 @@ const getRandomInteger = (min, max) => {
 
 getRandomInteger();
 
-const checkStringLength = (string, maxLength) => {
-  return string <= maxLength;
-};
+const checkStringLength = (string, maxLength) => string <= maxLength;
 
 checkStringLength();
 
