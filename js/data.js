@@ -1,6 +1,5 @@
 import {getRandomArrayElement, getRandomInteger} from './utli.js';
 
-const PHOTOS_COUNT = 25;
 const photosDescriptionsArray = [
   'Описание 1',
   'Описание 2',
@@ -17,8 +16,8 @@ const createPhoto = (index) => ({
   comments: getRandomInteger(0, 200)
 });
 
-const createPhotos = () => {
-  for (let i = 1; i <= PHOTOS_COUNT; i++) {
+const createPhotos = (count) => {
+  for (let i = 1; i <= count; i++) {
     photosArray.push(createPhoto(i));
   }
 
