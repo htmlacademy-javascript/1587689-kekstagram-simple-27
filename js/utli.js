@@ -16,8 +16,12 @@ const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
+const isEscapeKey = (evt) => {
+  return evt.key === 'Escape';
+};
+
 const checkStringLength = (string, maxLength) => string <= maxLength;
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomArrayElement, getRandomInteger};
+export {getRandomArrayElement, getRandomInteger, isEscapeKey, checkStringLength};
