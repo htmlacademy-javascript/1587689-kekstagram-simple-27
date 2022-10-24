@@ -24,7 +24,7 @@ const openEditor = () => filePhoto.addEventListener('change', () => {
   bodyModalOpen.classList.add('modal-open');
 
   document.addEventListener('keydown', closeEscEditor);
-  document.addEventListener('click', clickBtnClose)
+  document.addEventListener('click', clickBtnClose);
 });
 
 const closeEditor = () => {
