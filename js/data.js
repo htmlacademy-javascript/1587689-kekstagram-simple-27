@@ -17,7 +17,7 @@ const createPhoto = (index) => ({
   comments: getRandomInteger(0, 200)
 });
 
-const createPhotos = (COUNT_PHOTOS) => {
+const createPhotos = () => {
   for (let i = 1; i <= COUNT_PHOTOS; i++) {
     photosArray.push(createPhoto(i));
   }

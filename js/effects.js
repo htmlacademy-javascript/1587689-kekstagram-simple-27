@@ -26,4 +26,4 @@ const EFFECTS = [
   }
 ];
 
-export {EFFECTS}
+export {EFFECTS};

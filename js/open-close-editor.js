@@ -7,18 +7,6 @@ const editorPhoto = document.querySelector('.img-upload__overlay');
 const bodyModalOpen = document.querySelector('body');
 const imgUploadForm = document.querySelector('.img-upload__form');
 
-const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closeEditor();
-});
-
-const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeEditor();
-  }
-});
-
 const openEditor = () => filePhoto.addEventListener('change', () => {
   editorPhoto.classList.remove('hidden');
   bodyModalOpen.classList.add('modal-open');
@@ -38,5 +26,18 @@ const closeEditor = () => {
   document.removeEventListener('keydown', closeEscEditor);
   document.removeEventListener('click', clickBtnClose);
 };
+
+const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  closeEditor();
+});
+
+const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    closeEditor();
+  }
+});
+
 
 export { openEditor, closeEditor, clickBtnClose, closeEscEditor };

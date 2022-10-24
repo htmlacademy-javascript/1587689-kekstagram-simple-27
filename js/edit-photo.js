@@ -16,15 +16,15 @@ const editSize = () => {
       sizeValue -= 25;
       size.value = `${sizeValue}%`;
       imgUploadPreview.style.transform = `scale(${sizeValue / 100})`;
-    };
-  })
+    }
+  });
   sizeBigger.addEventListener('click', () => {
     if (sizeValue < 100) {
       sizeValue += 25;
       size.value = `${sizeValue}%`;
       imgUploadPreview.style.transform = `scale(${sizeValue / 100})`;
-    };
-  })
+    }
+  });
 };
 
 effectList.addEventListener('change', (evt) => {
@@ -32,7 +32,7 @@ effectList.addEventListener('change', (evt) => {
     const classEffect = EFFECTS[i].className;
     if (evt.target.checked && evt.target.id === EFFECTS[i].idName) {
       imgUploadPreview.className = classEffect;
-    };
+    }
   }
 });
 
