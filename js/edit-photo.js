@@ -29,26 +29,26 @@ const editSize = () => {
 
 // Эффекты
 
-  noUiSlider.create(sliderEffect, {
-    range: {
-      'min': 0,
-      'max': 100
-    },
-    step: 0.1,
-    start: 80
-  });
+noUiSlider.create(sliderEffect, {
+  range: {
+    'min': 0,
+    'max': 100
+  },
+  step: 0.1,
+  start: 80
+});
 
-  sliderEffect.noUiSlider.on('update', () => {
-    effectLevel.value = sliderEffect.noUiSlider.get();
-  });
+sliderEffect.noUiSlider.on('update', () => {
+  effectLevel.value = sliderEffect.noUiSlider.get();
+});
 
-  const addSlider = () => {
-    sliderEffect.classList.remove('visually-hidden');
-  };
+const addSlider = () => {
+  sliderEffect.classList.remove('visually-hidden');
+};
 
-  const removeSlider = () => {
-    sliderEffect.classList.add('visually-hidden');
-  };
+const removeSlider = () => {
+  sliderEffect.classList.add('visually-hidden');
+};
 
 effectList.addEventListener('change', (evt) => {
   for (let i = 0; i < EFFECTS.length; i++) {
