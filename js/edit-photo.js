@@ -50,6 +50,11 @@ const removeSlider = () => {
   sliderEffect.classList.add('visually-hidden');
 };
 
+const resetEffect = () => {
+  removeSlider();
+  imgUploadPreview.style.filter = 'none';
+}
+
 effectList.addEventListener('change', (evt) => {
   for (let i = 0; i < EFFECTS.length; i++) {
     const classEffect = EFFECTS[i].className;
@@ -71,8 +76,7 @@ effectList.addEventListener('change', (evt) => {
           imageWithClassEffect.style.filter = `${EFFECTS[i].filter}(${effectLevel.value}${EFFECTS[i].unit})`;
         });
       } else {
-        removeSlider();
-        imgUploadPreview.style.filter = 'none';
+        resetEffect();
       }
     }
   }
@@ -82,8 +86,7 @@ const resetEditPhoto = () => {
   sizeValue = sizeValueDefault;
   imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
   imgUploadPreview.className = 'effects__preview--none';
-  imgUploadPreview.style.filter = 'none';
-  removeSlider();
+  resetEffect();
 };
 
 export { sizeValueDefault, editSize, sizeControl, resetEditPhoto };
