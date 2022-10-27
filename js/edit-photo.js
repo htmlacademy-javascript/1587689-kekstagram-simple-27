@@ -1,39 +1,89 @@
 import { EFFECTS } from './effects.js';
+import { sizeControl, sizeSmaller, sizeBigger, imgUploadPreview, effectList, sliderEffect, effectLevel } from './dom-elements.js';
 
-const size = document.querySelector('.scale__control--value');
-const sizeSmaller = document.querySelector('.scale__control--smaller');
-const sizeBigger = document.querySelector('.scale__control--bigger');
-const imgUploadPreview = document.querySelector('.img-upload__preview');
 const sizeValueDefault = 100;
+const SIZE_MIN = 25;
+const SIZE_MAX = 100;
+const SIZE_STEP = 25;
 let sizeValue = 100;
 
-const effectList = document.querySelector('.effects__list');
+// Размер фотографии
 
 const editSize = () => {
 
   sizeSmaller.addEventListener('click', () => {
-    if (sizeValue > 25) {
-      sizeValue -= 25;
-      size.value = `${sizeValue}%`;
+    if (sizeValue > SIZE_MIN) {
+      sizeValue -= SIZE_STEP;
+      sizeControl.value = `${sizeValue}%`;
       imgUploadPreview.style.transform = `scale(${sizeValue / 100})`;
     }
   });
   sizeBigger.addEventListener('click', () => {
-    if (sizeValue < 100) {
-      sizeValue += 25;
-      size.value = `${sizeValue}%`;
+    if (sizeValue < SIZE_MAX) {
+      sizeValue += SIZE_STEP;
+      sizeControl.value = `${sizeValue}%`;
       imgUploadPreview.style.transform = `scale(${sizeValue / 100})`;
     }
   });
 };
 
+// Эффекты
+
+  noUiSlider.create(sliderEffect, {
+    range: {
+      'min': 0,
+      'max': 100
+    },
+    step: 0.1,
+    start: 80
+  });
+
+  sliderEffect.noUiSlider.on('update', () => {
+    effectLevel.value = sliderEffect.noUiSlider.get();
+  });
+
+  const addSlider = () => {
+    sliderEffect.classList.remove('visually-hidden');
+  };
+
+  const removeSlider = () => {
+    sliderEffect.classList.add('visually-hidden');
+  };
+
 effectList.addEventListener('change', (evt) => {
   for (let i = 0; i < EFFECTS.length; i++) {
     const classEffect = EFFECTS[i].className;
+
     if (evt.target.checked && evt.target.id === EFFECTS[i].idName) {
       imgUploadPreview.className = classEffect;
+      if (evt.target.checked && evt.target.id != 'effect-none') {
+        addSlider();
+        const imageWithClassEffect = document.querySelector(`.${classEffect}`);
+        sliderEffect.noUiSlider.updateOptions({
+          start: EFFECTS[i].maxValue,
+          range: {
+            'min': EFFECTS[i].minValue,
+            'max': EFFECTS[i].maxValue
+          },
+          step: EFFECTS[i].step
+        });
+        sliderEffect.noUiSlider.on('update', () => {
+          imageWithClassEffect.style.filter = `${EFFECTS[i].filter}(${effectLevel.value}${EFFECTS[i].unit})`;
+        });
+      } else {
+        removeSlider();
+        imgUploadPreview.style.filter = 'none';
+      }
     }
   }
 });
 
-export {sizeValueDefault, editSize, imgUploadPreview, size};
+const resetEditPhoto = () => {
+  sizeValue = sizeValueDefault;
+  imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
+  imgUploadPreview.className = 'effects__preview--none';
+  imgUploadPreview.style.filter = 'none';
+  removeSlider();
+};
+
+export { sizeValueDefault, editSize, sizeControl, resetEditPhoto };
