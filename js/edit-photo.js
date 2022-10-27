@@ -56,7 +56,7 @@ effectList.addEventListener('change', (evt) => {
 
     if (evt.target.checked && evt.target.id === EFFECTS[i].idName) {
       imgUploadPreview.className = classEffect;
-      if (evt.target.checked && evt.target.id != 'effect-none') {
+      if (evt.target.checked && evt.target.id !== 'effect-none') {
         addSlider();
         const imageWithClassEffect = document.querySelector(`.${classEffect}`);
         sliderEffect.noUiSlider.updateOptions({

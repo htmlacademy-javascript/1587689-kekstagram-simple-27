@@ -18,6 +18,6 @@ const renderPhotos = () => {
     userPhotoFragment.appendChild(photoElement);
   });
   blockPhotos.append(userPhotoFragment);
-}
+};
 
 export { renderPhotos };
