@@ -53,7 +53,7 @@ const removeSlider = () => {
 const resetEffect = () => {
   removeSlider();
   imgUploadPreview.style.filter = 'none';
-}
+};
 
 effectList.addEventListener('change', (evt) => {
   for (let i = 0; i < EFFECTS.length; i++) {
