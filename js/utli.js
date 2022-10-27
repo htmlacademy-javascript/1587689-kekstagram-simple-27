@@ -16,7 +16,7 @@ const getRandomInteger = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-const isEscapeKey = (evt) => {return evt.key === 'Escape'};
+const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const checkStringLength = (string, maxLength) => string <= maxLength;
 
