@@ -1,4 +1,4 @@
-import {createPhotos, COUNT_PHOTOS} from './data.js';
+import { createPhotos, COUNT_PHOTOS } from './data.js';
 
 const blockPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture')
@@ -6,9 +6,10 @@ const photoTemplate = document.querySelector('#picture')
   .querySelector('.picture');
 
 const photos = createPhotos(COUNT_PHOTOS);
-const userPhotoFragment = document.createDocumentFragment();
 
 const renderPhotos = () => {
+  const userPhotoFragment = document.createDocumentFragment();
+
   photos.forEach(({ url, comments, likes }) => {
     const photoElement = photoTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
@@ -17,6 +18,6 @@ const renderPhotos = () => {
     userPhotoFragment.appendChild(photoElement);
   });
   blockPhotos.append(userPhotoFragment);
-}
+};
 
-export {renderPhotos};
+export { renderPhotos };

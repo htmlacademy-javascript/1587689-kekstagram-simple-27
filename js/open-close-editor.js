@@ -1,11 +1,26 @@
 import { isEscapeKey } from './utli.js';
-import { sizeValueDefault, imgUploadPreview, size } from './edit-photo.js';
+import { sizeValueDefault, sizeControl, resetEditPhoto } from './edit-photo.js';
+import { filePhoto, closeBtn, editorPhoto, bodyModalOpen, imgUploadForm } from './dom-elements.js';
 
-const filePhoto = document.querySelector('#upload-file');
-const closeBtn = document.querySelector('#upload-cancel');
-const editorPhoto = document.querySelector('.img-upload__overlay');
-const bodyModalOpen = document.querySelector('body');
-const imgUploadForm = document.querySelector('.img-upload__form');
+const onClose = () => {
+  editorPhoto.classList.add('hidden');
+  bodyModalOpen.classList.remove('modal-open');
+  imgUploadForm.reset();
+  sizeControl.value = `${sizeValueDefault}%`;
+  resetEditPhoto();
+};
+
+const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  onClose();
+});
+
+const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    onClose();
+  }
+});
 
 const openEditor = () => filePhoto.addEventListener('change', () => {
   editorPhoto.classList.remove('hidden');
@@ -16,28 +31,15 @@ const openEditor = () => filePhoto.addEventListener('change', () => {
 });
 
 const closeEditor = () => {
-  editorPhoto.classList.add('hidden');
-  bodyModalOpen.classList.remove('modal-open');
-  imgUploadForm.reset();
-  size.value = `${sizeValueDefault}%`;
-  imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
-  imgUploadPreview.className = 'effects__preview--none';
+  onClose();
 
   document.removeEventListener('keydown', closeEscEditor);
   document.removeEventListener('click', clickBtnClose);
 };
 
-const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  closeEditor();
-});
-
-const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
-  if (isEscapeKey(evt)) {
-    evt.preventDefault();
-    closeEditor();
-  }
-});
-
-
-export { openEditor, closeEditor, clickBtnClose, closeEscEditor };
+export {
+  openEditor,
+  closeEditor,
+  clickBtnClose,
+  closeEscEditor
+};

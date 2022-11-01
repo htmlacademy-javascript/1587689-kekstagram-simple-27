@@ -1,4 +1,4 @@
-import {getRandomArrayElement, getRandomInteger} from './utli.js';
+import { getRandomArrayElement, getRandomInteger } from './utli.js';
 
 const COUNT_PHOTOS = 25;
 const photosDescriptionsArray = [
@@ -25,4 +25,4 @@ const createPhotos = () => {
   return photosArray;
 };
 
-export {createPhotos, COUNT_PHOTOS};
+export { createPhotos, COUNT_PHOTOS };

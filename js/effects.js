@@ -1,29 +1,9 @@
-const EFFECTS = [
-  {
-    idName: 'effect-none',
-    className: 'effects__preview--none'
-  },
+const EFFECTS = {
+  chrome: { min: 0, max: 1, step: 0.1, filter: 'grayscale', units: '' },
+  sepia: { min: 0, max: 1, step: 0.1, filter: 'sepia', units: '' },
+  marvin: { min: 0, max: 100, step: 1, filter: 'invert', units: '%' },
+  phobos: { min: 0, max: 3, step: 0.1, filter: 'blur', units: 'px' },
+  heat: { min: 1, max: 3, step: 0.1, filter: 'brightness', units: '' }
+};
 
-  {
-    idName: 'effect-chrome',
-    className: 'effects__preview--chrome'
-  },
-  {
-    idName: 'effect-sepia',
-    className: 'effects__preview--sepia'
-  },
-  {
-    idName: 'effect-marvin',
-    className: 'effects__preview--marvin'
-  },
-  {
-    idName: 'effect-phobos',
-    className: 'effects__preview--phobos'
-  },
-  {
-    idName: 'effect-heat',
-    className: 'effects__preview--heat'
-  }
-];
-
-export {EFFECTS};
+export { EFFECTS };
