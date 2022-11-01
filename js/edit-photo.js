@@ -1,5 +1,5 @@
 import { EFFECTS } from './effects.js';
-import { sizeControl, sizeSmaller, sizeBigger, imgUploadPreview, effectList, sliderEffect, effectLevel } from './dom-elements.js';
+import { sizeControl, sizeSmaller, sizeBigger, imgUploadPreview, effectsList, sliderEffect, effectLevel, imgPreviewFile, sliderEffectWrapper } from './dom-elements.js';
 
 const sizeValueDefault = 100;
 const SIZE_MIN = 25;
@@ -29,64 +29,93 @@ const editSize = () => {
 
 // Эффекты
 
-noUiSlider.create(sliderEffect, {
-  range: {
-    'min': 0,
-    'max': 100
-  },
-  step: 0.1,
-  start: 80
-});
-
-sliderEffect.noUiSlider.on('update', () => {
-  effectLevel.value = sliderEffect.noUiSlider.get();
-});
-
 const addSlider = () => {
-  sliderEffect.classList.remove('visually-hidden');
+  sliderEffectWrapper.style.visibility = 'visible';
+  sliderEffectWrapper.removeAttribute('aria-hidden');
 };
 
 const removeSlider = () => {
-  sliderEffect.classList.add('visually-hidden');
+  sliderEffectWrapper.style.visibility = 'hidden';
+  sliderEffectWrapper.setAttribute('aria-hidden', 'true');
 };
 
-const resetEffect = () => {
-  removeSlider();
-  imgUploadPreview.style.filter = 'none';
-};
+const resetEffect = () =>
+  imgPreviewFile.classList.forEach(
+    (item) =>
+      item.includes('effects__preview--') &&
+      imgPreviewFile.classList.remove(item),
+    imgPreviewFile.style.filter = 'inherit'
+  );
 
-effectList.addEventListener('change', (evt) => {
-  for (let i = 0; i < EFFECTS.length; i++) {
-    const classEffect = EFFECTS[i].className;
-
-    if (evt.target.checked && evt.target.id === EFFECTS[i].idName) {
-      imgUploadPreview.className = classEffect;
-      if (evt.target.checked && evt.target.id !== 'effect-none') {
-        addSlider();
-        const imageWithClassEffect = document.querySelector(`.${classEffect}`);
-        sliderEffect.noUiSlider.updateOptions({
-          start: EFFECTS[i].maxValue,
-          range: {
-            'min': EFFECTS[i].minValue,
-            'max': EFFECTS[i].maxValue
-          },
-          step: EFFECTS[i].step
-        });
-        sliderEffect.noUiSlider.on('update', () => {
-          imageWithClassEffect.style.filter = `${EFFECTS[i].filter}(${effectLevel.value}${EFFECTS[i].unit})`;
-        });
-      } else {
-        resetEffect();
-      }
-    }
+const updateSlider = (effect) => {
+  if (!EFFECTS[effect]) {
+    return;
   }
-});
+
+  const { min, max, step } = EFFECTS[effect];
+
+  sliderEffect.noUiSlider.updateOptions({
+    range: {
+      min,
+      max,
+    },
+    start: max,
+    step,
+  });
+};
+
+const changeImgEffect = () => {
+  const onEffectsListChange = () => {
+    const { value: effect } = effectsList.querySelector(
+      'input[type=radio]:checked'
+    );
+
+    sliderEffect.noUiSlider.off('update');
+    resetEffect();
+
+    if (effect !== 'none') {
+      imgPreviewFile.classList.add(`effects__preview--${effect}`);
+      addSlider();
+      updateSlider(effect);
+
+      sliderEffect.noUiSlider.on('update', () => {
+        effectLevel.value = sliderEffect.noUiSlider.get();
+        const { filter, units } = EFFECTS[effect];
+        imgPreviewFile.style.filter = `${filter}(${effectLevel.value}${units})`;
+      });
+    } else {
+      removeSlider();
+    }
+  };
+
+  effectsList.addEventListener('change', onEffectsListChange);
+};
+
+const createSlider = () => {
+  noUiSlider.create(sliderEffect, {
+    range: {
+      min: 0,
+      max: 1,
+    },
+    start: 1,
+    step: 0.1,
+    connect: 'lower',
+  });
+  removeSlider();
+};
 
 const resetEditPhoto = () => {
   sizeValue = sizeValueDefault;
   imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
-  imgUploadPreview.className = 'effects__preview--none';
   resetEffect();
+  removeSlider();
 };
 
-export { sizeValueDefault, editSize, sizeControl, resetEditPhoto };
+export {
+  changeImgEffect,
+  createSlider,
+  sizeValueDefault,
+  editSize,
+  sizeControl,
+  resetEditPhoto
+};

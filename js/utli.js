@@ -22,4 +22,9 @@ const checkStringLength = (string, maxLength) => string <= maxLength;
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-export {getRandomArrayElement, getRandomInteger, isEscapeKey, checkStringLength};
+export {
+  getRandomArrayElement,
+  getRandomInteger,
+  isEscapeKey,
+  checkStringLength
+};

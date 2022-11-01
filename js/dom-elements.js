@@ -12,8 +12,25 @@ const sizeBigger = document.querySelector('.scale__control--bigger');
 const imgUploadPreview = document.querySelector('.img-upload__preview');
 
 // Элементы эффектов
-const effectList = document.querySelector('.effects__list');
+const effectsList = document.querySelector('.effects');
+const sliderEffectWrapper = document.querySelector('.effect-level');
 const sliderEffect = document.querySelector('.effect-level__slider');
 const effectLevel = document.querySelector('.effect-level__value');
+const imgPreviewFile = imgUploadPreview.querySelector('img');
 
-export { filePhoto, closeBtn, editorPhoto, bodyModalOpen, imgUploadForm, sizeControl, sizeSmaller, sizeBigger, imgUploadPreview, effectList, sliderEffect, effectLevel };
+export {
+  filePhoto,
+  closeBtn,
+  editorPhoto,
+  bodyModalOpen,
+  imgUploadForm,
+  sizeControl,
+  sizeSmaller,
+  sizeBigger,
+  imgUploadPreview,
+  effectsList,
+  sliderEffect,
+  effectLevel,
+  imgPreviewFile,
+  sliderEffectWrapper
+};
