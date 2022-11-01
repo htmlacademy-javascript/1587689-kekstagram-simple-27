@@ -46,7 +46,7 @@ const resetEffect = () => {
       imgPreviewFile.classList.remove(item),
     imgPreviewFile.style.filter = 'inherit'
   );
-}
+};
 
 const updateSlider = (effect) => {
   if (!EFFECTS[effect]) {
