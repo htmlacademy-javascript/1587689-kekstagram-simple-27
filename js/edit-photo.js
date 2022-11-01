@@ -39,13 +39,14 @@ const removeSlider = () => {
   sliderEffectWrapper.setAttribute('aria-hidden', 'true');
 };
 
-const resetEffect = () =>
+const resetEffect = () => {
   imgPreviewFile.classList.forEach(
     (item) =>
       item.includes('effects__preview--') &&
       imgPreviewFile.classList.remove(item),
     imgPreviewFile.style.filter = 'inherit'
   );
+}
 
 const updateSlider = (effect) => {
   if (!EFFECTS[effect]) {
