@@ -1,13 +1,10 @@
-import { createPhotos, COUNT_PHOTOS } from './data.js';
-
 const blockPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
+const COUNT_PHOTOS = 25;
 
-const photos = createPhotos(COUNT_PHOTOS);
-
-const renderPhotos = () => {
+const renderPhotos = (photos) => {
   const userPhotoFragment = document.createDocumentFragment();
 
   photos.forEach(({ url, comments, likes }) => {
@@ -20,4 +17,4 @@ const renderPhotos = () => {
   blockPhotos.append(userPhotoFragment);
 };
 
-export { renderPhotos };
+export { renderPhotos, COUNT_PHOTOS };

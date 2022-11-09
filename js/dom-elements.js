@@ -2,8 +2,9 @@
 const filePhoto = document.querySelector('#upload-file');
 const closeBtn = document.querySelector('#upload-cancel');
 const editorPhoto = document.querySelector('.img-upload__overlay');
-const bodyModalOpen = document.querySelector('body');
+const bodyElement = document.querySelector('body');
 const imgUploadForm = document.querySelector('.img-upload__form');
+const imgSubmitBtn = document.querySelector('.img-upload__submit');
 
 // Элементы размера фото
 const sizeControl = document.querySelector('.scale__control--value');
@@ -22,8 +23,9 @@ export {
   filePhoto,
   closeBtn,
   editorPhoto,
-  bodyModalOpen,
+  bodyElement,
   imgUploadForm,
+  imgSubmitBtn,
   sizeControl,
   sizeSmaller,
   sizeBigger,

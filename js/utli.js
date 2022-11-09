@@ -26,5 +26,5 @@ export {
   getRandomArrayElement,
   getRandomInteger,
   isEscapeKey,
-  checkStringLength
+  checkStringLength,
 };
