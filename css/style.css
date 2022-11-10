@@ -514,13 +514,13 @@ main {
   height: 600px;
 
   background-color: #ffffff;
-  will-change: filter;
 }
 
 .img-upload__preview img {
   display: block;
   max-width: 600px;
   max-height: 600px;
+  will-change: filter;
 }
 
 
