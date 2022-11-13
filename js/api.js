@@ -6,7 +6,7 @@ const getData = (onSuccess) => {
     });
 };
 
-const sendData = (formData, onSuccess, fail) => {
+const sendData = (formData, onSuccess, onFail) => {
   fetch('https://27.javascript.pages.academy/kekstagram-simple',
     {
       method: 'POST',
@@ -16,11 +16,11 @@ const sendData = (formData, onSuccess, fail) => {
       if (response.ok) {
         onSuccess();
       } else {
-        fail();
+        onFail();
       }
     })
     .catch(() => {
-      fail();
+      onFail();
     });
 };
 

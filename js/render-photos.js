@@ -2,7 +2,6 @@ const blockPhotos = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
-const COUNT_PHOTOS = 25;
 
 const renderPhotos = (photos) => {
   const userPhotoFragment = document.createDocumentFragment();
@@ -17,4 +16,4 @@ const renderPhotos = (photos) => {
   blockPhotos.append(userPhotoFragment);
 };
 
-export { renderPhotos, COUNT_PHOTOS };
+export { renderPhotos };
