@@ -107,6 +107,7 @@ const createSlider = () => {
 
 const resetEditPhoto = () => {
   sizeValue = sizeValueDefault;
+  sizeControl.value = `${sizeValueDefault}%`;
   imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
   resetEffect();
   removeSlider();
@@ -115,8 +116,6 @@ const resetEditPhoto = () => {
 export {
   changeImgEffect,
   createSlider,
-  sizeValueDefault,
   editSize,
-  sizeControl,
   resetEditPhoto
 };
