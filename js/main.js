@@ -1,12 +1,12 @@
 import { getData } from './api.js';
 import { renderPhotos } from './render-photos.js';
-import { openEditor, closeEditor, clickBtnClose, closeEscEditor } from './open-close-editor.js';
+import { openEditor, closeEditor, onClickBtnCloseEditor, onEscCloseEditor } from './open-close-editor.js';
 import { editSize, changeImgEffect, createSlider } from './edit-photo.js';
 
 getData(renderPhotos);
 
-clickBtnClose();
-closeEscEditor();
+onClickBtnCloseEditor();
+onEscCloseEditor();
 openEditor();
 closeEditor();
 editSize();

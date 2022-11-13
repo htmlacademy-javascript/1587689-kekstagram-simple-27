@@ -12,12 +12,12 @@ const onClose = () => {
   resetEditPhoto();
 };
 
-const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
+const onClickBtnCloseEditor = () => closeBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
   onClose();
 });
 
-const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
+const onEscCloseEditor = () => document.addEventListener('keydown', (evt) => {
   if (isErrorModal) {
     return false;
   }
@@ -31,18 +31,18 @@ const openEditor = () => filePhoto.addEventListener('change', () => {
   editorPhoto.classList.remove('hidden');
   bodyElement.classList.add('modal-open');
 
-  document.addEventListener('keydown', closeEscEditor);
-  document.addEventListener('click', clickBtnClose);
+  document.addEventListener('keydown', onEscCloseEditor);
+  document.addEventListener('click', onClickBtnCloseEditor);
 });
 
 const closeEditor = () => {
   onClose();
 
-  document.removeEventListener('keydown', closeEscEditor);
-  document.removeEventListener('click', clickBtnClose);
+  document.removeEventListener('keydown', onEscCloseEditor);
+  document.removeEventListener('click', onClickBtnCloseEditor);
 };
 
-const successTemplate  = document.querySelector('#success').content;
+const successTemplate = document.querySelector('#success').content;
 const errorTemplate = document.querySelector('#error').content;
 
 const closeModal = (modal) => {
@@ -59,7 +59,7 @@ const unblockSubmitButton = () => {
   imgSubmitBtn.textContent = 'Опубликовать';
 };
 
-const appendSuccessModal  = () => {
+const appendSuccessModal = () => {
   const successElement = successTemplate .cloneNode(true);
   bodyElement.appendChild(successElement);
 
@@ -117,6 +117,6 @@ imgUploadForm.addEventListener('submit', (evt) => {
 export {
   openEditor,
   closeEditor,
-  clickBtnClose,
-  closeEscEditor,
+  onClickBtnCloseEditor,
+  onEscCloseEditor,
 };
