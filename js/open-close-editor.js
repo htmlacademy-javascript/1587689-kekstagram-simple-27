@@ -42,7 +42,7 @@ const closeEditor = () => {
   document.removeEventListener('click', clickBtnClose);
 };
 
-const succesTemplate = document.querySelector('#success').content;
+const successTemaplate = document.querySelector('#success').content;
 const errorTemplate = document.querySelector('#error').content;
 
 const closeModal = (modal) => {
@@ -59,8 +59,8 @@ const unblockSubmitButton = () => {
   imgSubmitBtn.textContent = 'Опубликовать';
 };
 
-const appendSuccesModal = () => {
-  const successElement = succesTemplate.cloneNode(true);
+const appendSuccessModal = () => {
+  const successElement = successTemaplate.cloneNode(true);
   bodyElement.appendChild(successElement);
 
   const successModalElement = document.querySelector('.success');
@@ -72,13 +72,13 @@ const appendSuccesModal = () => {
     }
   });
 
-  const onSuccesClickClose = () => successModalElement.addEventListener('click', () => {
+  const onSuccessClickClose  = () => successModalElement.addEventListener('click', () => {
     closeModal(successModalElement);
     closeEditor();
   });
 
   onSuccessModalEscKeydown();
-  onSuccesClickClose();
+  onSuccessClickClose ();
   unblockSubmitButton();
 };
 
@@ -111,7 +111,7 @@ imgUploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const formData = new FormData(evt.target);
   blockSubmitButton();
-  sendData(formData, appendSuccesModal, errorDownload);
+  sendData(formData, appendSuccessModal, errorDownload);
 });
 
 export {

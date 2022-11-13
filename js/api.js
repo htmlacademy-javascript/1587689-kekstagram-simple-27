@@ -19,9 +19,7 @@ const sendData = (formData, onSuccess, onFail) => {
         onFail();
       }
     })
-    .catch(() => {
-      onFail();
-    });
+    .catch(() => onFail());
 };
 
 export { getData, sendData };
