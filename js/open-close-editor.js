@@ -18,7 +18,7 @@ const clickBtnClose = () => closeBtn.addEventListener('click', (evt) => {
 });
 
 const closeEscEditor = () => document.addEventListener('keydown', (evt) => {
-  if (isErrorModal === true) {
+  if (isErrorModal) {
     return false;
   }
   if (isEscapeKey(evt)) {
