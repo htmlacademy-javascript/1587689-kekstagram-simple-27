@@ -1,7 +1,7 @@
 import { EFFECTS } from './effects.js';
 import { sizeControl, sizeSmaller, sizeBigger, imgUploadPreview, effectsList, sliderEffect, effectLevel, imgPreviewFile, sliderEffectWrapper } from './dom-elements.js';
 
-const sizeValueDefault = 100;
+const SIZE_VALUE_DEFAULT = 100;
 const SIZE_MIN = 25;
 const SIZE_MAX = 100;
 const SIZE_STEP = 25;
@@ -106,9 +106,9 @@ const createSlider = () => {
 };
 
 const resetEditPhoto = () => {
-  sizeValue = sizeValueDefault;
-  sizeControl.value = `${sizeValueDefault}%`;
-  imgUploadPreview.style.transform = `scale(${sizeValueDefault / 100})`;
+  sizeValue = SIZE_VALUE_DEFAULT;
+  sizeControl.value = `${SIZE_VALUE_DEFAULT}%`;
+  imgUploadPreview.style.transform = `scale(${SIZE_VALUE_DEFAULT / 100})`;
   resetEffect();
   removeSlider();
 };
